@@ -1,39 +1,40 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
 ## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+A Flutter package create a widget that will display only one widget based on the current focused index and each change will be accompanied by an animation.
 
 ## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+Completed example in `/example` folder. 
 
 ```dart
-const like = 'sample';
+  const SlidingBox(
+    height: 100,
+    width: 100,
+    children: [
+      ColoredBox(color Colors.amber),
+      ColoredBox(color Colors.deepPurple),
+      ColoredBox(color Colors.green),
+    ],
+  )
 ```
 
-## Additional information
+---
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+### 🚧 Maintener 
+[![account avatar][]][github account] <br>
+**Farhan Fadila**<br>
+📫 How to reach me: farhan.fadila1717@gmail.com
+
+### ❤️ Suport Maintener
+[![paypal][]][paypal account] [![badge linktree][]][linktree account]
+
+<!-- TODO: Added Cover -->
+<!-- [cover]: https://github.com/farhanfadila1717/flutter_package/blob/master/display/card_loading/card_loading.png
+[output]: https://github.com/farhanfadila1717/flutter_package/blob/master/display/card_loading/output_card_loading.gif -->
+[flutter]: https://img.shields.io/badge/Platform-Flutter-02569B?logo=flutter
+[web flutter]: https://flutter.dev
+[paypal]: https://img.shields.io/badge/Donate-PayPal-00457C?logo=paypal
+[paypal account]: https://www.paypal.me/farhanfadila1717
+[account avatar]: https://avatars.githubusercontent.com/u/43161050?s=80
+[github account]: https://github.com/farhanfadila1717
+[badge linktree]: https://img.shields.io/badge/Linktree-farhanfadila-orange
+[linktree account]: https://linktr.ee/farhanfadila
+[github]: https://github.com/farhanfadila1717/sliding_box

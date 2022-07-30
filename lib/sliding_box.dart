@@ -14,6 +14,7 @@ class SlidingBox extends StatefulWidget {
     required this.width,
     required this.children,
     this.scrollDirection,
+    this.physics,
     this.onChanged,
     this.duration,
     this.slidingDuration,
@@ -36,6 +37,21 @@ class SlidingBox extends StatefulWidget {
   /// Direction of sliding animation
   /// if this is empty it will be filled with the default [Axis.horizontal]
   final Axis? scrollDirection;
+
+  /// How the page view should respond to user input.
+  ///
+  /// For example, determines how the page view continues to animate after the
+  /// user stops dragging the page view.
+  ///
+  /// The physics are modified to snap to page boundaries using
+  /// [PageScrollPhysics] prior to being used.
+  ///
+  /// If an explicit [ScrollBehavior] is provided to [scrollBehavior], the
+  /// [ScrollPhysics] provided by that behavior will take precedence after
+  /// [physics].
+  ///
+  /// Defaults to matching platform conventions.
+  final ScrollPhysics? physics;
 
   /// Will be called when the focused widget changes
   final ValueChanged<int>? onChanged;
@@ -80,27 +96,31 @@ class _SlidingBoxState extends State<SlidingBox> {
       return;
     }
     await Future.delayed(widget.duration ?? const Duration(seconds: 3));
+    onChanged();
+    if (mounted) {
+      changedIndex();
+    }
+  }
+
+  void onChanged([bool fromPageView = false, int? index]) {
     if (_reversed) {
       if (_currentIndex == 0) {
         _reversed = !_reversed;
-        _currentIndex++;
-        nextPage();
+        _currentIndex = index ?? _currentIndex++;
+        if (!fromPageView) nextPage();
       } else {
-        _currentIndex--;
-        previousPage();
+        _currentIndex = index ?? _currentIndex--;
+        if (!fromPageView) previousPage();
       }
     } else {
       if (_currentIndex == widget.children.length - 1) {
         _reversed = !_reversed;
-        _currentIndex--;
-        previousPage();
+        _currentIndex = index ?? _currentIndex--;
+        if (!fromPageView) previousPage();
       } else {
-        _currentIndex++;
-        nextPage();
+        _currentIndex = index ?? _currentIndex++;
+        if (!fromPageView) nextPage();
       }
-    }
-    if (mounted) {
-      changedIndex();
     }
   }
 
@@ -129,6 +149,11 @@ class _SlidingBoxState extends State<SlidingBox> {
   }
 
   @override
+  void setState(VoidCallback fn) {
+    if (mounted) super.setState(fn);
+  }
+
+  @override
   void dispose() {
     _controller.dispose();
     super.dispose();
@@ -144,11 +169,14 @@ class _SlidingBoxState extends State<SlidingBox> {
         controller: _controller,
         itemCount: widget.children.length,
         scrollDirection: scrollDirection,
-        physics: const NeverScrollableScrollPhysics(),
+        physics: widget.physics,
         onPageChanged: (index) {
           if (widget.onChanged != null) {
             widget.onChanged!(index);
           }
+          setState(() {
+            onChanged(true, index);
+          });
         },
         itemBuilder: (context, index) => widget.children[index],
       ),

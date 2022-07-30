@@ -1,6 +1,6 @@
 name: sliding_box
 description: A Flutter package create a widget that will display only one widget based on the current focused index and each change will be accompanied by an animation.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/farhanfadila1717/sliding_box
 maintener: Farhan Fadila (@farhanfadila1717)
 

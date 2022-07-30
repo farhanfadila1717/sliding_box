@@ -31,7 +31,7 @@ Completed example in `/example` folder.
 [![paypal][]][paypal account] [![badge linktree][]][linktree account]
 
 [cover]: https://github.com/farhanfadila1717/flutter_package/blob/master/display/sliding_box/sliding_box.png
-[output]: https://github.com/farhanfadila1717/flutter_package/blob/master/display/sliding_box/output_sliding_box.gif
+[output]: https://github.com/farhanfadila1717/flutter_package/blob/master/display/sliding_box/sliding_box.gif
 [flutter]: https://img.shields.io/badge/Platform-Flutter-02569B?logo=flutter
 [web flutter]: https://flutter.dev
 [paypal]: https://img.shields.io/badge/Donate-PayPal-00457C?logo=paypal
